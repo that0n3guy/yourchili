@@ -11,9 +11,6 @@ NGINX_GROUP="www-data"
 
 USER="librarian"
 USER_PW="ookook"
-USER_FIRST_NAME="The"
-USER_LAST_NAME="Librarian"
-USER_EMAIL="librarian@uu.edu.am"
 
 BACKUP_DIR="/backups" #directory where we store backups
 
