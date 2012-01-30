@@ -19,11 +19,11 @@ BACKUP_DIR="/backups" #directory where we store backups
 
 git pull >/dev/null 2>&1
 
-nginx_create_site "mysite.com"        "mysite.com www.mysite.com"               0 "" 1
-nginx_ensite "mysite.com"
+nginx_create_site "$HOSTNAME"        "$HOSTNAME www.$HOSTNAME"               0 "" 1
+nginx_ensite "$HOSTNAME"
 nginx_delete_site default
 
-install_chili_project   "mysite.com" ""      1 0 ""     postgresql ""      1 "$USER" "$USER_PW" "$USER_FIRST_NAME" "$USER_LAST_NAME" "$USER_EMAIL"     "my-git-proj1" 1 "My Git One"
+install_chili_project   "$HOSTNAME" ""      1 0 ""     mysql "$DB_PASSWORD"      1 "$USER" "$USER_PW" "$USER_FIRST_NAME" "$USER_LAST_NAME" "$USER_EMAIL"     "my-git-proj1" 1 "My Git One"
 
 cd /root
 ln -s /srv/www/my*/chili
