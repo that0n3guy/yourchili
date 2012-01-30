@@ -99,7 +99,7 @@ function install_chili_project_or_redmine
 
 	#create chili database
 	local db="${app_prefix}_"$(randomString 10 | tr "[:upper:]" "[:lower:]")
-	if [ "$DB_TYPE" = "mysql" ] && [ -n "$DB_PASSWORD"] ; then
+	if [ "$DB_TYPE" = "mysql" ] ; then
 		mysql_create_database "$DB_PASSWORD" "$db"
 		mysql_create_user     "$DB_PASSWORD" "$db" "$CHILI_ADMIN_PW"
 		mysql_grant_user      "$DB_PASSWORD" "$db" "$db"
@@ -155,7 +155,7 @@ function install_chili_project_or_redmine
 		aptitude install -y libmagick-dev
 		aptitude install -y libmagickwand-dev
 		aptitude install -y libxslt-dev
-		if [ "$DB_TYPE" = "mysql" ]  && [ -n "$DB_PASSWORD"] ; then
+		if [ "$DB_TYPE" = "mysql" ] ; then
 			/usr/local/ruby/bin/bundle install --without="sqlite postgres mysql2"
 		else
 			/usr/local/ruby/bin/bundle install --without="sqlite mysql mysql2"
@@ -301,7 +301,7 @@ EOF
 	chown -R www-data:www-data "$chili_install_path"
 	chmod 600 "$chili_install_path/.ssh/"*rsa*
 	cd "$chili_install_path"
-	if [ "$DB_TYPE" = "mysql" ]  && [ -n "$DB_PASSWORD"] ; then
+	if [ "$DB_TYPE" = "mysql" ] ; then
 		/usr/local/ruby/bin/bundle install --without="sqlite postgres mysql2"
 	else
 		/usr/local/ruby/bin/bundle install --without="sqlite mysql mysql2"
